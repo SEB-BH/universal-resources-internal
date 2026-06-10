@@ -281,7 +281,7 @@ function buildHomeLink() {
     ["class", "no-underline"],
     [
       "href",
-      `${getSiteBasePath()}/${courseConfig.name}.html`,
+      `${getModuleBasePath()}/`,
     ],
   ]
 
