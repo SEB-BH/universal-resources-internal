@@ -311,7 +311,7 @@ function buildMicrolessonLinks() {
     liEl.setAttribute("class", "f4")
 
     // Create the base link
-    const baseLinkHref = `${getSiteBasePath()}/${ml.dirName}/`
+    const baseLinkHref = `${getModuleBasePath()}/${ml.dirName}/`
     liEl.appendChild(
       createNavAnchorEl(idx, currentMlIdx, baseLinkHref, ml.friendlyName)
     )
@@ -433,7 +433,7 @@ function buildFooter() {
     const backNavLgElAttrs = [
       ["id", "tc-left-nav-lg"],
       ["class", "f4 text-bold no-underline"],
-      ["href", `${getSiteBasePath()}/${prevMl.dirName}/`],
+      ["href", `${getModuleBasePath()}/${prevMl.dirName}/`],
     ]
     const backNavLgEl = createElWithAttrs("a", backNavLgElAttrs)
     backNavLgEl.innerHTML = `< ${prevMl.friendlyName}`
@@ -441,7 +441,7 @@ function buildFooter() {
     const backNavSmElAttrs = [
       ["id", "tc-left-nav-sm"],
       ["class", "f4 text-bold no-underline"],
-      ["href", `${getSiteBasePath()}/${prevMl.dirName}/`],
+      ["href", `${getModuleBasePath()}/${prevMl.dirName}/`],
     ]
     const backNavSmEl = createElWithAttrs("a", backNavSmElAttrs)
     backNavSmEl.textContent = "< Previous"
@@ -470,7 +470,7 @@ function buildFooter() {
     const nextNavElLgAttrs = [
       ["id", "tc-right-nav-lg"],
       ["class", "f4 text-bold no-underline"],
-      ["href", `${getSiteBasePath()}/${nextMl.dirName}/`],
+      ["href", `${getModuleBasePath()}/${nextMl.dirName}/`],
     ]
     const nextNavLgEl = createElWithAttrs("a", nextNavElLgAttrs)
     nextNavLgEl.innerHTML = `${nextMl.friendlyName} >`
@@ -478,7 +478,7 @@ function buildFooter() {
     const nextNavElSmAttrs = [
       ["id", "tc-right-nav-sm"],
       ["class", "f4 text-bold no-underline"],
-      ["href", `${getSiteBasePath()}/${nextMl.dirName}/`],
+      ["href", `${getModuleBasePath()}/${nextMl.dirName}/`],
     ]
     const nextNavSmEl = createElWithAttrs("a", nextNavElSmAttrs)
     nextNavSmEl.textContent = "Next >"
@@ -706,14 +706,6 @@ function createSvgWithAttrs(elName, attrs) {
   return el
 }
 
-function getMicrolessonIdx() {
-  const currentMlDir = location.pathname.split("/")[3]
-
-  return courseConfig.microlessons.findIndex((microlesson) => {
-    return microlesson.dirName === currentMlDir
-  })
-}
-
 function getTimeDisplay(timeEl) {
   const minsInt = timeEl.textContent.replace(/\D/g, "")
 
@@ -743,6 +735,17 @@ function getMicrolessonIdx() {
   return courseConfig.microlessons.findIndex((microlesson) => {
     return pathParts.includes(microlesson.dirName)
   })
+}
+
+function getModuleBasePath() {
+  const pathParts = window.location.pathname.split("/").filter(Boolean)
+  const repoIndex = pathParts.indexOf(config.repo.name)
+
+  if (repoIndex === -1) {
+    return `/${config.repo.name}`
+  }
+
+  return `/${pathParts.slice(0, repoIndex + 1).join("/")}`
 }
 
 function customizeBannerForActivity(bannerEls) {
