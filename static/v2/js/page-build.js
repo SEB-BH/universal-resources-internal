@@ -726,6 +726,17 @@ function getTimeDisplay(timeEl) {
   }
 }
 
+function getSiteBasePath() {
+  const pathParts = window.location.pathname.split("/").filter(Boolean)
+  const repoIndex = pathParts.indexOf(config.repo.name)
+
+  if (repoIndex === -1) {
+    return ""
+  }
+
+  return `/${pathParts.slice(0, repoIndex + 1).join("/")}`
+}
+
 function customizeBannerForActivity(bannerEls) {
   if (bannerEls.activityEl.classList.contains("solo-exercise")) {
     bannerEls.activityTypeTextEl.textContent = "Solo exercise"
