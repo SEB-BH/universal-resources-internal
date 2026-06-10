@@ -281,7 +281,7 @@ function buildHomeLink() {
     ["class", "no-underline"],
     [
       "href",
-      `${getSiteBasePath()}/canvas-landing-pages/${courseConfig.name}.html`,
+      `${getSiteBasePath()}/${courseConfig.name}.html`,
     ],
   ]
 
@@ -735,6 +735,14 @@ function getSiteBasePath() {
   }
 
   return `/${pathParts.slice(0, repoIndex + 1).join("/")}`
+}
+
+function getMicrolessonIdx() {
+  const pathParts = location.pathname.split("/").filter(Boolean)
+
+  return courseConfig.microlessons.findIndex((microlesson) => {
+    return pathParts.includes(microlesson.dirName)
+  })
 }
 
 function customizeBannerForActivity(bannerEls) {
