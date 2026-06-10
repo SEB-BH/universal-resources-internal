@@ -729,14 +729,6 @@ function getSiteBasePath() {
   return `/${pathParts.slice(0, repoIndex + 1).join("/")}`
 }
 
-function getMicrolessonIdx() {
-  const pathParts = location.pathname.split("/").filter(Boolean)
-
-  return courseConfig.microlessons.findIndex((microlesson) => {
-    return pathParts.includes(microlesson.dirName)
-  })
-}
-
 function getModuleBasePath() {
   const pathParts = window.location.pathname.split("/").filter(Boolean)
   const repoIndex = pathParts.indexOf(config.repo.name)
@@ -747,6 +739,16 @@ function getModuleBasePath() {
 
   return `/${pathParts.slice(0, repoIndex + 1).join("/")}`
 }
+
+function getMicrolessonIdx() {
+  const pathParts = location.pathname.split("/").filter(Boolean)
+
+  return courseConfig.microlessons.findIndex((microlesson) => {
+    return pathParts.includes(microlesson.dirName)
+  })
+}
+
+ 
 
 function customizeBannerForActivity(bannerEls) {
   if (bannerEls.activityEl.classList.contains("solo-exercise")) {
