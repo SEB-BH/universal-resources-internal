@@ -95,7 +95,7 @@ const navLogoContainerElAttrs = [
 const headerGaLogoElAttrs = [
   ["id", "tc-header-ga-logo"],
   ["class", "mr-3"],
-  ["src", "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/universal-resources-internal/static/v2/assets/ga-nav-logo.png"],
+  ["src", "https://seb-bh.github.io/universal-resources-internal/static/v2/assets/ga-nav-logo.png"],
   ["height", "32"],
   ["alt", "GA logo"],
 ]
@@ -153,7 +153,7 @@ const legalContainerElAttrs = [
 ]
 
 const attributionsElAttrs = [
-  ["href", "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/universal-resources/docs/v2/attributions.html"],
+  ["href", "https://seb-bh.github.io/universal-resources-internal/docs/v2/attributions.html"],
   ["target", "blank_"],
   ["class", "f7"],
 ]
@@ -311,10 +311,16 @@ function buildMicrolessonLinks() {
     liEl.setAttribute("class", "f4")
 
     // Create the base link
-    const baseLinkHref = `/${config.org.name}/${config.repo.name}/${ml.dirName}/`
+    const baseLinkHref = `/${config.repo.name}/${ml.dirName}/`
     liEl.appendChild(
       createNavAnchorEl(idx, currentMlIdx, baseLinkHref, ml.friendlyName)
     )
+
+    // const baseLinkHref = `/${config.org.name}/${config.repo.name}/${ml.dirName}/`
+    // liEl.appendChild(
+    //   createNavAnchorEl(idx, currentMlIdx, baseLinkHref, ml.friendlyName)
+    // )
+
 
     // If microlesson has a video attach a link to it unless explicitly 
     // configured to not be shown
