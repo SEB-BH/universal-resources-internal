@@ -46,8 +46,8 @@ function addHeroLogo() {
   logoImgEl.setAttribute("alt", "Logo")
   logoImgEl.setAttribute("class", "no-zoom")
   logoImgEl.setAttribute(
-    "src", 
-    "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/universal-resources-internal/static/v2/assets/hero-logo.png"
+    "src",
+    "https://seb-bh.github.io/universal-resources-internal/static/v2/assets/hero-logo.png"
   )
 
   heroLogoContainerEl.appendChild(logoImgEl)
